@@ -1,32 +1,40 @@
 package com.joy.bill.model.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by joy on 2018/3/27.
  */
 
 @Entity
-public class User {
+@JsonIgnoreProperties(value = {"user"})
+public class User implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     int id;
     String username;
+    @NotEmpty
     String account;
+
     String password;
 
     @Min(value = 0,message = "结余不能小于0")
     double balance;
     int type;
 
+
+
     public User() {
     }
+
 
     public int getId() {
         return id;
@@ -75,4 +83,5 @@ public class User {
     public void setType(int type) {
         this.type = type;
     }
+
 }

@@ -1,30 +1,57 @@
 package com.joy.bill.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by joy on 2018/3/27.
  */
 @Entity
-public class Bill {
+@JsonIgnoreProperties(value = {"bill"})
+public class Bill implements Serializable{
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int id;
 
-    private String account;
+    /**
+     * 买入
+     */
     private double buy;
+    /**
+     * 卖出
+     */
     private double sale;
+    /**
+     *利润
+     */
     private double profit;
+    /**
+     *运费
+     */
     private double freight;
+    /**
+     * 退款
+     */
     private double refund;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date = new Date();
+
+
+    private String account;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public Bill() {
     }
@@ -37,13 +64,6 @@ public class Bill {
         this.id = id;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
 
     public double getBuy() {
         return buy;
@@ -91,5 +111,14 @@ public class Bill {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

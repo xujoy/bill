@@ -1,16 +1,15 @@
 package com.joy.bill.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by joy on 2018/3/27.
  */
 @Entity
-public class BalanceChange {
+public class BalanceChange implements Serializable {
 
 
     @Id
@@ -19,6 +18,18 @@ public class BalanceChange {
     double changeAfter;
     double changeBefore;
     String account;
+    String message;
+
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getAccount() {
+
+        return account;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     Date date;
     int changeType;
@@ -50,13 +61,6 @@ public class BalanceChange {
         this.changeBefore = changeBefore;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
 
     public Date getDate() {
         return date;
@@ -72,5 +76,13 @@ public class BalanceChange {
 
     public void setChangeType(int changeType) {
         this.changeType = changeType;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

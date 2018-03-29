@@ -14,5 +14,12 @@ public interface UserService {
     public void changePWD(String account,String password);
 
 
+    public void reduceUserBanlance(double money,String account,String balanceMSG);
+
+    public void addUserBanlance(double money,String account,String balanceMSG);
+
+
+
+
 
 }
